@@ -37,11 +37,10 @@ targets:
     mode: production
     workspace:
       host: https://dbc-0713ba39-d291.cloud.databricks.com
-      # We explicitly deploy to /Workspace/Users/ashokdhanavel82@gmail.com to make sure we only have a single copy.
-      root_path: /Workspace/Users/ashokdhanavel82@gmail.com/.bundle/${bundle.name}/${bundle.target}
+      root_path: /Workspace/Users/suganya_am@outlook.com/.bundle/${bundle.name}/${bundle.target}
     variables:
       catalog: workspace
       schema: prod
     permissions:
-      - user_name: ashokdhanavel82@gmail.com
+      - user_name: suganya_am@outlook.com
         level: CAN_MANAGE
