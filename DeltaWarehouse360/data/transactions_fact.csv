@@ -1,0 +1,9 @@
+transaction_id,customer_id,product_id,transaction_date,quantity,unit_price,transaction_amount,discount_percentage,tax_amount,total_amount,payment_method,channel,region,sales_person_id
+T20230001,1001,P001,2023-01-15 10:30:00,1,1999.99,1999.99,10.00,180.00,1979.99,Credit Card,Online,North,SP001
+T20230002,1002,P002,2023-01-16 14:45:00,2,299.99,599.98,5.00,54.00,603.98,PayPal,Online,Europe,SP002
+T20230003,1001,P003,2023-02-10 09:15:00,1,499.99,499.99,15.00,42.50,527.49,Credit Card,Store,North,SP001
+T20230004,1003,P001,2023-02-20 16:20:00,3,1899.99,5699.97,12.00,513.00,5702.97,Bank Transfer,Online,North,SP003
+T20230005,1004,P004,2023-03-05 11:30:00,1,899.99,899.99,8.00,72.00,891.99,Credit Card,Store,Asia,SP004
+T20230006,1002,P002,2023-03-15 13:45:00,1,299.99,299.99,0.00,27.00,326.99,PayPal,Online,Europe,SP002
+T20230007,1005,P005,2023-04-01 15:00:00,5,49.99,249.95,20.00,20.00,229.95,Credit Card,Store,South,SP005
+T20230008,1001,P003,2023-05-20 10:30:00,2,549.99,1099.98,10.00,99.00,1088.98,Bank Transfer,Online,North,SP001

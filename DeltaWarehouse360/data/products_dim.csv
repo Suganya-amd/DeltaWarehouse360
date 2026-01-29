@@ -1,0 +1,9 @@
+product_id,product_name,product_category,sub_category,price,cost,manufacturer,discontinued_flag,start_date,end_date,is_current,last_updated
+P001,MacBook Pro 14",Electronics,Laptops,1999.99,1200.00,Apple Inc.,0,2022-01-01,2022-10-31,0,2022-10-31 23:59:59
+P001,MacBook Pro 14",Electronics,Laptops,1899.99,1150.00,Apple Inc.,0,2022-11-01,9999-12-31,1,2022-11-01 08:00:00
+P002,Wireless Headphones,Electronics,Audio,299.99,150.00,Sony,0,2022-02-15,9999-12-31,1,2022-02-15 09:30:00
+P003,Office Chair,Furniture,Office Furniture,499.99,250.00,Herman Miller,0,2022-03-01,2023-04-30,0,2023-04-30 23:59:59
+P003,Office Chair Pro,Furniture,Office Furniture,549.99,280.00,Herman Miller,0,2023-05-01,9999-12-31,1,2023-05-01 10:15:00
+P004,Coffee Machine,Home Appliances,Kitchen,899.99,450.00,DeLonghi,0,2022-04-10,9999-12-31,1,2022-04-10 11:45:00
+P005,Yoga Mat,Sports,Fitness,49.99,15.00,Nike,0,2022-05-20,2023-07-31,0,2023-07-31 23:59:59
+P005,Yoga Mat Premium,Sports,Fitness,59.99,18.00,Nike,1,2023-08-01,9999-12-31,1,2023-08-01 14:20:00

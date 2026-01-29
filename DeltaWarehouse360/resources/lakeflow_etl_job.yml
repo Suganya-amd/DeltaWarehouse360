@@ -1,0 +1,47 @@
+# Complete Lakeflow job with tasks for each layer
+resources:
+  jobs:
+    deltawarehouse360_etl:
+      name: "[${bundle.target}] DeltaWarehouse360 - Full ETL Pipeline"
+      description: "Complete ETL pipeline with Bronze, Silver, Gold layers and SCD2"
+      tags:
+        project: deltawarehouse360
+        type: etl
+        owner: suganya
+      
+      # Job-wide settings
+      schedule:
+        quartz_cron_expression: "0 0 2 * * ?"  # Daily at 2 AM
+        timezone_id: "UTC"
+      
+      # Common parameters for all tasks
+      parameters:
+        - name: "source_volume"
+          default: "${var.catalog_name}.${var.schema_name}.source_data"
+        
+        - name: "bronze_catalog"
+          default: "${var.catalog_name}"
+        
+        - name: "bronze_schema"
+          default: "bronze"
+
+      
+      tasks:
+        - task_key: bronze_ingestion
+          description: "Ingest CSV files from volume to Bronze layer"
+
+          notebook_task:
+            notebook_path: "../notebooks/bronze_ingestion.py"
+            source: "WORKSPACE"
+            base_parameters:
+              source_volume: "${var.catalog_name}.${var.schema_name}.source_data"
+              catalog: "${var.catalog_name}"
+              schema: "${var.schema_name}"
+
+      # Job environment (serverless-compatible): specify libraries here
+      environment:
+        version: 4
+        libraries:
+          - whl: "../dist/*.whl"
+      
+  

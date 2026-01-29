@@ -32,3 +32,9 @@ packages = ["src/python/DeltaWarehouse360"]
 
 [tool.ruff]
 line-length = 120
+
+[tool.ruff.lint]
+extend-ignore = ["F405"]  # Ignore undefined names (dbutils is injected by Databricks runtime)
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*" = ["F405", "F403"]  # Ignore undefined/wildcard imports in Databricks notebooks

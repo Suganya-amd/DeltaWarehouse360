@@ -138,6 +138,29 @@ info:
 	@echo "$(SETUP) Environment:"
 	@echo "Virtual Environment: .venv"
 
+# Databricks bundle targets
+DATABRICKS := databricks
+DB_TARGET ?= prod
+
+.PHONY: databricks-build databricks-validate databricks-deploy
+
+databricks-build:
+	@echo "$(ROCKET) Building Python wheel and Databricks bundle"
+	$(UV) build --wheel
+	@echo "$(BUILD) Building Databricks bundle from databricks.yml"
+	$(DATABRICKS) bundle build
+	@echo "$(CHECK) Databricks bundle build step finished"
+
+databricks-validate:
+	@echo "$(INFO) Validating databricks.yml"
+	$(DATABRICKS) bundle validate
+	@echo "$(CHECK) Validation finished"
+
+databricks-deploy:
+	@echo "$(ROCKET) Deploying Databricks bundle to target=$(DB_TARGET)"
+	$(DATABRICKS) bundle deploy --target $(DB_TARGET)
+	@echo "$(CHECK) Deploy finished (target=$(DB_TARGET))"
+
 # Pre-commit hooks targets
 pre-commit-install:
 	@echo "🪝 Installing pre-commit hooks..."

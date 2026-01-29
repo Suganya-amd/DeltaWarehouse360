@@ -1,0 +1,10 @@
+customer_id,customer_name,customer_email,country,customer_segment,credit_tier,start_date,end_date,is_current,last_updated
+1001,John Doe,john.doe@email.com,USA,Enterprise,Gold,2022-01-01,2022-12-31,0,2022-12-31 23:59:59
+1001,John Doe,john.doe@corp.com,USA,Enterprise,Platinum,2023-01-01,2023-06-30,0,2023-06-30 23:59:59
+1001,John Doe,john.doe@corp.com,USA,Enterprise,Platinum,2023-07-01,9999-12-31,1,2023-07-01 10:30:00
+1002,Jane Smith,jane.smith@email.com,UK,Premium,Silver,2022-02-15,2023-05-31,0,2023-05-31 23:59:59
+1002,Jane Smith,j.smith@company.co.uk,UK,Premium,Gold,2023-06-01,9999-12-31,1,2023-06-01 09:15:00
+1003,Robert Johnson,rob.j@email.com,Canada,Standard,Bronze,2022-03-10,9999-12-31,1,2022-03-10 11:20:00
+1004,Emily Chen,emily.chen@email.com,Singapore,Enterprise,Platinum,2022-04-05,2023-08-31,0,2023-08-31 23:59:59
+1004,Emily Chen,e.chen@asia.com,Singapore,Enterprise,Platinum,2023-09-01,9999-12-31,1,2023-09-01 14:45:00
+1005,Michelle Rodriguez,m.rodriguez@email.com,Mexico,Premium,Silver,2022-05-20,9999-12-31,1,2022-05-20 16:30:00

@@ -3,7 +3,10 @@
 bundle:
   name: DeltaWarehouse360
   uuid: 1cf3f77d-ac73-42fe-a0bc-63315fde426b
-  version: 0.1.0
+
+permissions:
+  - user_name: ashokdhanavel82@gmail.com
+    level: CAN_MANAGE
 
 include:
   - resources/*.yml
@@ -16,10 +19,10 @@ artifacts:
 
 # Variable declarations. These variables are assigned in the dev/prod targets below.
 variables:
-  catalog:
-    description: The catalog to use
-  schema:
-    description: The schema to use
+  catalog_name:
+    description: The catalog name (synonym for catalog)
+  schema_name:
+    description: The schema name (synonym for schema)
 
 targets:
   prod:
@@ -28,8 +31,10 @@ targets:
       host: https://dbc-0713ba39-d291.cloud.databricks.com
       root_path: /Workspace/Users/suganya_am@outlook.com/.bundle/${bundle.name}/${bundle.target}
     variables:
-      catalog: workspace
-      schema: prod
+      catalog_name: etl
+      schema_name: bronze
     permissions:
       - user_name: suganya_am@outlook.com
+        level: CAN_MANAGE
+      - user_name: ashokdhanavel82@gmail.com
         level: CAN_MANAGE

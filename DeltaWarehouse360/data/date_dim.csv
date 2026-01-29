@@ -1,0 +1,9 @@
+date_key,full_date,day_of_week,day_of_month,week_of_year,month_number,month_name,quarter,year,fiscal_year,fiscal_quarter,is_weekend,is_holiday,holiday_name
+20230115,2023-01-15,Sunday,15,3,1,January,Q1,2023,FY2023,FQ3,1,1,Martin Luther King Day
+20230116,2023-01-16,Monday,16,3,1,January,Q1,2023,FY2023,FQ3,0,0,NULL
+20230210,2023-02-10,Friday,10,6,2,February,Q1,2023,FY2023,FQ3,0,0,NULL
+20230220,2023-02-20,Monday,20,8,2,February,Q1,2023,FY2023,FQ3,0,1,Presidents Day
+20230305,2023-03-05,Sunday,5,9,3,March,Q1,2023,FY2023,FQ4,1,0,NULL
+20230315,2023-03-15,Wednesday,15,11,3,March,Q1,2023,FY2023,FQ4,0,0,NULL
+20230401,2023-04-01,Saturday,1,13,4,April,Q2,2023,FY2023,FQ4,1,0,NULL
+20230520,2023-05-20,Saturday,20,20,5,May,Q2,2023,FY2023,FQ4,1,0,NULL
