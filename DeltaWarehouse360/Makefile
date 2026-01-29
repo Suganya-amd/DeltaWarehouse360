@@ -1,4 +1,4 @@
-.PHONY: help install sync clean test lint format build run dev-setup check all
+.PHONY: help install sync clean test lint format build run dev-setup check all pre-commit-install pre-commit-run pre-commit-autoupdate
 
 # Emojis and Icons
 ROCKET=🚀
@@ -20,12 +20,14 @@ help:
 	@echo "  make install          Install uv package manager"
 	@echo "  make sync             Sync dependencies and create virtual environment"
 	@echo "  make dev-setup        Complete development setup (install + sync)"
+	@echo "  make pre-commit-install Install pre-commit hooks"
 	@echo ""
 	@echo "$(TEST) Development Commands:"
 	@echo "  make test             Run pytest test suite"
 	@echo "  make lint             Run ruff linter"
 	@echo "  make format           Format code with ruff"
 	@echo "  make check            Run all checks (lint + test)"
+	@echo "  make pre-commit-run   Run all pre-commit hooks"
 	@echo ""
 	@echo "$(BUILD) Build Commands:"
 	@echo "  make build            Build wheel package"
@@ -135,3 +137,20 @@ info:
 	@echo ""
 	@echo "$(SETUP) Environment:"
 	@echo "Virtual Environment: .venv"
+
+# Pre-commit hooks targets
+pre-commit-install:
+	@echo "🪝 Installing pre-commit hooks..."
+	pip install pre-commit
+	pre-commit install
+	@echo "$(CHECK) Pre-commit hooks installed successfully"
+
+pre-commit-run:
+	@echo "🪝 Running pre-commit hooks on all files..."
+	pre-commit run --all-files
+	@echo "$(CHECK) Pre-commit hooks check complete"
+
+pre-commit-autoupdate:
+	@echo "🔄 Updating pre-commit hooks..."
+	pre-commit autoupdate
+	@echo "$(CHECK) Pre-commit hooks updated"

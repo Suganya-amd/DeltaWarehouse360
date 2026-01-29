@@ -1,0 +1,13 @@
+# Bandit configuration for security scanning
+# More info: https://bandit.readthedocs.io/
+
+[bandit]
+# Exclude tests from security scanning
+exclude_dirs = ['tests', '.venv', 'build']
+
+# Tests to skip
+skips = [
+    # B101: Test for use of assert
+    # B601: Paramiko call with policy set to auto add
+    # B607: Starting a process with a partial executable
+]

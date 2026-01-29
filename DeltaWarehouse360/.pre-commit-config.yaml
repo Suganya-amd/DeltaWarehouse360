@@ -1,0 +1,33 @@
+# Pre-commit hooks configuration (Local only)
+# Install: pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # Local Python script - Format with ruff
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: ruff format
+        entry: ruff format
+        language: system
+        types: [python]
+        stages: [commit]
+
+      - id: ruff-lint
+        name: ruff lint
+        entry: ruff check --fix
+        language: system
+        types: [python]
+        stages: [commit]
+
+      - id: check-yaml
+        name: Check YAML syntax
+        entry: python -c "import yaml, sys; [yaml.safe_load(open(f)) for f in sys.argv[1:]]"
+        language: system
+        types: [yaml]
+
+      - id: check-toml
+        name: Check TOML syntax
+        entry: python -c "import tomllib, sys; [tomllib.loads(open(f).read()) for f in sys.argv[1:]]"
+        language: system
+        types: [toml]
