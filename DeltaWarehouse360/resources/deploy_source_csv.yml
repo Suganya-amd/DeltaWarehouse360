@@ -1,0 +1,19 @@
+# Volume configuration for CSV source data
+resources:
+  environment:
+    version: 4
+
+  jobs:
+    deploy-csv-job:
+      name: Deploy-CSV-Files-to-Volume
+      tasks:
+        - task_key: deploy-task
+          notebook_task:
+            notebook_path: ../notebooks/utils/deploy_to_volume.py
+
+  volumes:
+    source_data_volume:
+      name: "source_data"
+      catalog_name: "${var.catalog_name}"
+      schema_name: "bronze"
+      comment: "Volume containing source CSV files for DeltaWarehouse360"
