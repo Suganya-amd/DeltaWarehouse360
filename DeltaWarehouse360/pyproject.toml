@@ -1,7 +1,7 @@
 [project]
 name = "DeltaWarehouse360"
 version = "0.0.1"
-authors = [{ name = "ashokdhanavel82@gmail.com" }]
+authors = [{ name = "Suganya", email = "suganya_am@outlook.com" }]
 requires-python = ">=3.10,<3.13"
 dependencies = [
     # Any dependencies for jobs and pipelines in this project can be added here
@@ -34,7 +34,7 @@ packages = ["src/python/DeltaWarehouse360"]
 line-length = 120
 
 [tool.ruff.lint]
-extend-ignore = ["F405"]  # Ignore undefined names (dbutils is injected by Databricks runtime)
+extend-ignore = ["F405"]  # Ignore names from star imports
 
 [tool.ruff.lint.per-file-ignores]
-"notebooks/*" = ["F405", "F403"]  # Ignore undefined/wildcard imports in Databricks notebooks
+"notebooks/**" = ["F405", "F403", "F821", "E402"]  # Ignore injected globals, star imports, and sys.path setup in notebooks

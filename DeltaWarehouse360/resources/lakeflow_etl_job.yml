@@ -17,31 +17,49 @@ resources:
       # Common parameters for all tasks
       parameters:
         - name: "source_volume"
-          default: "${var.catalog_name}.${var.schema_name}.source_data"
+          default: "${var.catalog_name}/${var.schema_name}/source_data"
         
         - name: "bronze_catalog"
           default: "${var.catalog_name}"
         
         - name: "bronze_schema"
-          default: "bronze"
+          default: "${var.schema_name}"
 
-      
       tasks:
         - task_key: bronze_ingestion
           description: "Ingest CSV files from volume to Bronze layer"
-
           notebook_task:
             notebook_path: "../notebooks/bronze_ingestion.py"
             source: "WORKSPACE"
             base_parameters:
-              source_volume: "${var.catalog_name}.${var.schema_name}.source_data"
+              source_volume: "${var.catalog_name}/${var.schema_name}/source_data"
               catalog: "${var.catalog_name}"
               schema: "${var.schema_name}"
 
-      # Job environment (serverless-compatible): specify libraries here
-      environment:
-        version: 4
-        libraries:
-          - whl: "../dist/*.whl"
+        - task_key: silver_processing
+          description: "Process Bronze data to Silver layer with SCD2"
+          depends_on:
+            - task_key: bronze_ingestion
+          notebook_task:
+            notebook_path: "../notebooks/silver_scd2.py"
+            source: "WORKSPACE"
+            base_parameters:
+              source_catalog: "${var.catalog_name}"
+              source_schema: "${var.schema_name}"
+              target_catalog: "${var.catalog_name}"
+              target_schema: "${var.schema_name}"
+
+        - task_key: gold_aggregations
+          description: "Build Gold layer business aggregations and analytics tables"
+          depends_on:
+            - task_key: silver_processing
+          notebook_task:
+            notebook_path: "../notebooks/gold_aggregations.py"
+            source: "WORKSPACE"
+            base_parameters:
+              source_catalog: "${var.catalog_name}"
+              source_schema: "${var.schema_name}"
+              target_catalog: "${var.catalog_name}"
+              target_schema: "${var.schema_name}"
       
   

@@ -1,4 +1,4 @@
-.PHONY: help install sync clean test lint format build run dev-setup check all pre-commit-install pre-commit-run pre-commit-autoupdate
+.PHONY: help install sync clean test lint format wheel build run dev-setup check all pre-commit-install pre-commit-run pre-commit-autoupdate validate deploy
 
 # Emojis and Icons
 ROCKET=🚀
@@ -10,8 +10,8 @@ CLEAN=🧹
 SETUP=⚙️
 
 # Default Python interpreter
-UV := ~/.local/bin/uv
-PYTHON := $(UV) run python
+UV ?= $(shell which uv 2>/dev/null || echo ~/.local/bin/uv)
+PYTHON ?= $(UV) run python
 
 help:
 	@echo "$(ROCKET) DeltaWarehouse360 - Available Commands"
@@ -76,12 +76,12 @@ check: lint test
 	@echo "$(CHECK) All checks passed"
 
 # Build targets
-build:
+wheel:
 	@echo "$(BUILD) Building wheel package..."
 	$(UV) build --wheel
 	@echo "$(CHECK) Build complete"
 
-build-clean: clean build
+build-clean: clean wheel
 	@echo "$(CHECK) Clean build complete"
 
 # Run targets
@@ -144,19 +144,17 @@ DB_TARGET ?= prod
 
 .PHONY: databricks-build databricks-validate databricks-deploy
 
-databricks-build:
-	@echo "$(ROCKET) Building Python wheel and Databricks bundle"
-	$(UV) build --wheel
+build: wheel
 	@echo "$(BUILD) Building Databricks bundle from databricks.yml"
 	$(DATABRICKS) bundle build
 	@echo "$(CHECK) Databricks bundle build step finished"
 
-databricks-validate:
+validate:
 	@echo "$(INFO) Validating databricks.yml"
 	$(DATABRICKS) bundle validate
 	@echo "$(CHECK) Validation finished"
 
-databricks-deploy:
+deploy:
 	@echo "$(ROCKET) Deploying Databricks bundle to target=$(DB_TARGET)"
 	$(DATABRICKS) bundle deploy --target $(DB_TARGET)
 	@echo "$(CHECK) Deploy finished (target=$(DB_TARGET))"
@@ -164,8 +162,7 @@ databricks-deploy:
 # Pre-commit hooks targets
 pre-commit-install:
 	@echo "🪝 Installing pre-commit hooks..."
-	pip install pre-commit
-	pre-commit install
+	$(UV) run pre-commit install
 	@echo "$(CHECK) Pre-commit hooks installed successfully"
 
 pre-commit-run:
